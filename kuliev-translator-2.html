@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Александр Кулиев — Профессиональный переводчик</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #1B2A3E;
+      --ink:     #2C3E50;
+      --slate:   #5A6A7A;
+      --silver:  #C8D0D8;
+      --ivory:   #F7F5F1;
+      --gold:    #B8963E;
+      --white:   #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ivory);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 48px;
+      height: 64px;
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--silver);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+      gap: 48px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 45%; height: 100%;
+      background: linear-gradient(135deg, transparent 30%, rgba(184,150,62,0.07) 100%);
+      pointer-events: none;
+    }
+    .hero-rule {
+      position: absolute; left: 48px; top: 50%;
+      transform: translateY(-50%);
+      width: 2px; height: 120px;
+      background: var(--gold);
+    }
+    .hero-content { padding-left: 32px; max-width: 560px; flex: 1; }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 280px; height: 340px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 2px;
+      filter: grayscale(15%);
+    }
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; right: -8px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--gold);
+      border-radius: 2px;
+      z-index: -1;
+    }
+    .hero-eyebrow {
+      color: var(--gold);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      color: var(--silver);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 480px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+    .hero-stat {
+      display: inline-flex; align-items: baseline; gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(184,150,62,0.3);
+      padding: 14px 24px;
+      border-radius: 2px;
+    }
+    .hero-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .hero-stat .label {
+      color: var(--silver);
+      font-size: 0.85rem;
+      font-weight: 300;
+    }
+
+    /* SECTION BASE */
+    section { padding: 96px 48px; }
+    .section-eyebrow {
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 48px;
+      line-height: 1.25;
+    }
+
+    /* SERVICES */
+    .services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+    }
+    .service-card {
+      background: var(--ivory);
+      padding: 40px 36px;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .service-card:hover { background: #EEE9E0; }
+    .service-card::before {
+      content: '';
+      display: block;
+      width: 32px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 24px;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .service-card p {
+      color: var(--slate);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* LANGUAGES */
+    .languages { background: var(--navy); }
+    .languages .section-title { color: var(--white); }
+    .lang-pair {
+      display: flex; align-items: center; gap: 24px;
+      margin-bottom: 32px;
+    }
+    .lang-tag {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(184,150,62,0.35);
+      padding: 20px 36px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      border-radius: 2px;
+      min-width: 200px;
+      text-align: center;
+    }
+    .lang-arrow {
+      color: var(--gold);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    /* WHY */
+    .why { background: var(--ivory); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+    }
+    .why-item {}
+    .why-item .icon {
+      width: 44px; height: 44px;
+      background: var(--navy);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.2rem;
+    }
+    .why-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .why-item p {
+      color: var(--slate);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--white);
+      text-align: center;
+    }
+    .contact .section-title { margin-bottom: 16px; }
+    .contact-sub {
+      color: var(--slate);
+      font-size: 1rem;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+    .contact-card {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid var(--silver);
+      padding: 48px 64px;
+      border-radius: 2px;
+      gap: 8px;
+    }
+    .contact-label {
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .contact-phone {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--navy);
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .contact-phone:hover { color: var(--gold); }
+    .contact-hint {
+      color: var(--slate);
+      font-size: 0.82rem;
+      margin-top: 4px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer p {
+      color: var(--slate);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+    footer span {
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 20px 60px; flex-direction: column-reverse; gap: 32px; }
+      .hero-rule { display: none; }
+      .hero-content { padding-left: 0; }
+      .hero-photo { width: 180px; height: 220px; align-self: center; }
+      section { padding: 72px 20px; }
+      .contact-card { padding: 36px 28px; width: 100%; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">А. Кулиев</div>
+    <ul class="nav-links">
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#languages">Языки</a></li>
+      <li><a href="#why">О переводчике</a></li>
+      <li><a href="#contact">Контакт</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-rule"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Профессиональный переводчик</p>
+      <h1>Александр<br/>Кулиев</h1>
+      <p class="hero-sub">Точный, своевременный перевод с русского на английский и обратно. Деловая переписка, юридические документы, технические тексты.</p>
+      <div class="hero-stat">
+        <span class="num">15</span>
+        <span class="label">лет профессионального опыта</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="photo.jpg" alt="Александр Кулиев — переводчик" />
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <p class="section-eyebrow">Что я делаю</p>
+    <h2 class="section-title">Услуги</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Деловой перевод</h3>
+        <p>Контракты, договоры, деловая переписка, презентации и корпоративные документы.</p>
+      </div>
+      <div class="service-card">
+        <h3>Юридические документы</h3>
+        <p>Нотариально заверенные переводы, судебные материалы, доверенности и свидетельства.</p>
+      </div>
+      <div class="service-card">
+        <h3>Технический перевод</h3>
+        <p>Инструкции, технические спецификации, патентная документация.</p>
+      </div>
+      <div class="service-card">
+        <h3>Устный перевод</h3>
+        <p>Переговоры, конференции, встречи и деловые поездки.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="languages" id="languages">
+    <p class="section-eyebrow">Рабочие языки</p>
+    <h2 class="section-title">Языковые пары</h2>
+    <div class="lang-pair">
+      <div class="lang-tag">Русский</div>
+      <div class="lang-arrow">⇄</div>
+      <div class="lang-tag">English</div>
+    </div>
+    <p style="color: var(--silver); font-size: 0.9rem; font-weight: 300; max-width: 480px; line-height: 1.7;">
+      Перевод в обоих направлениях. Глубокое знание деловой и юридической лексики обоих языков.
+    </p>
+  </section>
+
+  <section class="why" id="why">
+    <p class="section-eyebrow">Почему я</p>
+    <h2 class="section-title">О переводчике</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="icon">🕐</div>
+        <h4>Соблюдение сроков</h4>
+        <p>Работаю точно в согласованные сроки. Срочные заказы — по договорённости.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon">📋</div>
+        <h4>Точность перевода</h4>
+        <p>15 лет специализации — гарантия терминологической точности и стилистического соответствия.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon">🔒</div>
+        <h4>Конфиденциальность</h4>
+        <p>Полная сохранность переданных материалов. Работаю с NDA и соглашениями о неразглашении.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon">💬</div>
+        <h4>Прямое общение</h4>
+        <p>Без посредников. Вы работаете напрямую с переводчиком на всех этапах.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="section-eyebrow">Связаться</p>
+    <h2 class="section-title">Обсудим ваш проект</h2>
+    <p class="contact-sub">Оставьте заявку — отвечу в течение нескольких часов.</p>
+    <div class="contact-card">
+      <span class="contact-label">Телефон / WhatsApp</span>
+      <a class="contact-phone" href="tel:+77055041977">+7 705 504 19 77</a>
+      <span class="contact-hint">Александр Кулиев</span>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Александр Кулиев</p>
+    <span>Переводчик · Русский / English</span>
+  </footer>
+
+</body>
+</html>
